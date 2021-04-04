@@ -1,9 +1,9 @@
 package vashetkov.lesson3;
 
 public class Human {
-    String fio;
-    Integer age;
-    Address address;
+    private String fio;
+    private Integer age;
+    private Address address;
 
     public Human() {
     }
