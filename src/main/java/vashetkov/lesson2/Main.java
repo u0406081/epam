@@ -1,7 +1,10 @@
 package vashetkov.lesson2;
+import vashetkov.lesson2.MyExceptions.MyCheckedException;
+
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
+
 
         Cache<Integer> cache1 = new Cache<Integer>(5);
 
@@ -17,14 +20,22 @@ public class Main {
         element5.element = 5;
         CacheElement<Integer> element6 = new CacheElement<Integer>();
         element6.element = 6;
+
+        Storage storage = new Storage();
+
+        cache1.add(null);
         cache1.add(element1);
         cache1.add(element2);
         cache1.add(element3);
         cache1.add(element4);
         cache1.add(element5);
-
         //cache1.add(element6);
-        //cache1.delete(element3);
+
+        try {
+            cache1.delete(element6);
+        } catch (MyCheckedException e) {
+            System.out.println("Element is null");
+        }
         //System.out.println("isPresent = " + cache1.isPresent(element6));
         //cache1.get(element2);
         //cache1.clear();
@@ -37,5 +48,7 @@ public class Main {
                 System.out.println("null");
             }
         }
+
+
     }
 }
