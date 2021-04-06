@@ -1,7 +1,7 @@
 package vashetkov.lesson2.MyExceptions;
 
-public class MyCheckedException extends Exception{
-    public MyCheckedException(String message) {
+public class ElementIsNUllUncheckedException extends Exception{
+    public ElementIsNUllUncheckedException(String message) {
         super(message);
     }
 }
