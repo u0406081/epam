@@ -36,6 +36,7 @@ public class Main {
             cache1.delete(element6);
         } catch (ElementIsNullCheckedException e) {
             System.out.println("Element is null");
+            //Потому-что здесь не используется логер
         }
         //System.out.println("isPresent = " + cache1.isPresent(element6));
         //cache1.get(element2);
