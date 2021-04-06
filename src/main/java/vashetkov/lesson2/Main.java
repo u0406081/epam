@@ -1,6 +1,7 @@
 package vashetkov.lesson2;
-import vashetkov.lesson2.MyExceptions.MyCheckedException;
 
+
+import vashetkov.lesson2.MyExceptions.ElementIsNullCheckedException;
 
 public class Main {
     public static void main(String[] args){
@@ -33,7 +34,7 @@ public class Main {
 
         try {
             cache1.delete(element6);
-        } catch (MyCheckedException e) {
+        } catch (ElementIsNullCheckedException e) {
             System.out.println("Element is null");
         }
         //System.out.println("isPresent = " + cache1.isPresent(element6));

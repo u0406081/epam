@@ -1,8 +1,10 @@
 package vashetkov.lesson2;
 
 import lombok.extern.slf4j.Slf4j;
-import vashetkov.lesson2.MyExceptions.MyCheckedException;
-import vashetkov.lesson2.MyExceptions.MyUncheckedException;
+import vashetkov.lesson2.MyExceptions.ElementIsNullCheckedException;
+import vashetkov.lesson2.MyExceptions.ElementIsNullUncheckedException;
+
+
 
 /**
  * Класс кэш.
@@ -23,10 +25,10 @@ public class Cache<T> {
      * Добавляет
      * @param element - элемент
      */
-    public void add(CacheElement<T> element) throws MyUncheckedException{
+    public void add(CacheElement<T> element) throws ElementIsNullUncheckedException {
         if (element == null) {
             log.warn("CacheElement is null");
-            throw new MyUncheckedException("element is null");
+            throw new ElementIsNullUncheckedException("element is null");
         }
         if (size==capacity){
             for (int j = 0; j < cache.length - 1; j++) {
@@ -43,7 +45,7 @@ public class Cache<T> {
      * Удаляет
      * @param element - элемент
      */
-    public void delete(CacheElement<T> element) throws MyCheckedException {
+    public void delete(CacheElement<T> element) throws ElementIsNullCheckedException {
         Integer indexOfFinded = null;
         for (int i=0; i < cache.length; i++) {
             if (cache[i] != null && cache[i].equals(element)) {
@@ -51,7 +53,7 @@ public class Cache<T> {
                 cache[i] = null;
             }
         }
-        if (indexOfFinded == null) throw new MyCheckedException("Element not found");
+        if (indexOfFinded == null) throw new ElementIsNullCheckedException("Element not found");
         for (int i=indexOfFinded; i < cache.length-1; i++){
             cache[i] = cache[i+1];
             cache[i+1] = null;
