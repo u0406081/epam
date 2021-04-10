@@ -1,14 +1,16 @@
-package vashetkov.lesson5;
 import java.io.IOException;
 import java.util.List;
 
 public class DeleteCommand {
-    public static String deleteLineInFile(String line) {
-        StringBuilder message = new StringBuilder();
-        String[] lineParts = line.split(" ");
-        boolean isLineNumberSpecified = lineParts.length == 3;
-        int lineNumber = isLineNumberSpecified == true ? tryParseToInteger(lineParts[1], message) : 0;
-        String fileName = isLineNumberSpecified == true ? lineParts[2] : lineParts[1];
+    StringBuilder message = new StringBuilder();
+    boolean isLineNumberSpecified;
+    int lineNumber;
+    String fileName;
+    String text;
+
+    public String deleteLineInFile(String line) {
+        message.setLength(0);
+        parceLine(line);
         if (message.length() > 0) return message.toString();
 
         List<String> list = null;
@@ -32,7 +34,14 @@ public class DeleteCommand {
         return message.toString();
     }
 
-    public static int tryParseToInteger(String lineNumber, StringBuilder errorMessage){
+    public void parceLine(String line){
+        String[] lineParts = line.split(" ");
+        this.isLineNumberSpecified = lineParts.length == 3;
+        this.lineNumber = isLineNumberSpecified == true ? tryParseToInteger(lineParts[1], message) : 0;
+        this.fileName = isLineNumberSpecified == true ? lineParts[2] : lineParts[1];
+    }
+
+    public int tryParseToInteger(String lineNumber, StringBuilder errorMessage){
         try {
             return Integer.parseInt(lineNumber);
         }catch(NumberFormatException e){
