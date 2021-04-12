@@ -1,3 +1,4 @@
+package vashetkov.lesson5;
 public class FilterCommand {
 
     public String filter(String line){
