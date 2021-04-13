@@ -1,11 +1,13 @@
 package vashetkov.lesson5;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Reader {
-    public static List fillList(String fileName) throws IOException {
+    public List fillList(String fileName) throws IOException {
         List<String> list = new LinkedList<String>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("src/main/resources/" + fileName)))) {
             String line;
@@ -17,4 +19,5 @@ public class Reader {
             return list;
         }
     }
+
 }

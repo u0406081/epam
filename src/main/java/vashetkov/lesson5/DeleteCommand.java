@@ -4,6 +4,7 @@ import java.util.List;
 
 public class DeleteCommand {
     StringBuilder message = new StringBuilder();
+    Reader reader = new Reader();
     boolean isLineNumberSpecified;
     int lineNumber;
     String fileName;
@@ -16,7 +17,7 @@ public class DeleteCommand {
 
         List<String> list = null;
         try {
-            list = Reader.fillList(fileName);
+            list = reader.fillList(fileName);
         } catch (IOException e) {
             message.append("Не удалось открыть файл: " + fileName +", попробуйте \"file.txt\"");
         }
