@@ -1,4 +1,4 @@
-package vashetkov.lesson1;
+package vashetkov.lesson7;
 
 public class MainTest {
 }
