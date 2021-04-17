@@ -4,10 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.security.AccessControlContext;
 import java.security.AccessController;
+import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
 public class CustomClassLoader extends ClassLoader{
-    String repoLocation = "C:/myClasses/";
+    public static final String REPO_LOCATION = "C:/myClasses/";
 
     CustomClassLoader() {
     }
@@ -18,7 +19,7 @@ public class CustomClassLoader extends ClassLoader{
 
     @Override
     protected Class<?> findClass(final String name)   throws ClassNotFoundException {
-        AccessControlContext acc = AccessController.getContext();
+        AccessControlContext accessControlContext = AccessController.getContext();
 
         try {
             return (Class) AccessController.doPrivileged(new PrivilegedExceptionAction() {
@@ -26,7 +27,7 @@ public class CustomClassLoader extends ClassLoader{
                             FileInputStream fi = null;
                             try {
                                 String path = name.replace('.', '/');
-                                fi = new FileInputStream(repoLocation + path+ ".class");
+                                fi = new FileInputStream(REPO_LOCATION + path+ ".class");
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 byte[] buffer = new byte[8192]; // a big chunk
                                 int read;
@@ -40,8 +41,8 @@ public class CustomClassLoader extends ClassLoader{
                                 throw new ClassNotFoundException(name);
                             }
                         }
-                    }, acc);
-        } catch (java.security.PrivilegedActionException pae) {
+                    }, accessControlContext);
+        } catch (PrivilegedActionException pae) {
             return super.findClass(name);
         }
     }
